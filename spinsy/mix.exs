@@ -52,7 +52,8 @@ defmodule Spinsy.MixProject do
       {:plug_cowboy, "~> 2.5"},
       {:surface, "~> 0.7.0"},
       {:surface_formatter, "~> 0.6.0"},
-      {:surface_catalogue, "~> 0.4.0"}
+      {:surface_catalogue, "~> 0.4.0"},
+      {:tailwind, "~> 0.1", runtime: Mix.env() == :dev}
     ]
   end
 
