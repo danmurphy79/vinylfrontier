@@ -25,7 +25,8 @@ config :spinsy, SpinsyWeb.Endpoint,
   secret_key_base: "7+gt1+pJ8lulIrVi6ZDlgyikfQu3dJxZjcHMl6+xoQY48vtFdPm16OyqvDC0w+Gp",
   watchers: [
     # Start the esbuild watcher by calling Esbuild.install_and_run(:default, args)
-    esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]}
+    esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]},
+    esbuild: {Esbuild, :install_and_run, [:catalogue, ~w(--sourcemap=inline --watch)]}
   ]
 
 # ## SSL Support
@@ -54,12 +55,14 @@ config :spinsy, SpinsyWeb.Endpoint,
 
 # Watch static and templates for browser reloading.
 config :spinsy, SpinsyWeb.Endpoint,
+  reloadable_compilers: [:gettext, :elixir, :surface],
   live_reload: [
     patterns: [
       ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
-      ~r"lib/spinsy_web/(live|views)/.*(ex)$",
-      ~r"lib/spinsy_web/templates/.*(eex)$"
+      ~r"lib/spinsy_web/(live|views|components)/.*(ex|sface|js)$",
+      ~r"lib/spinsy_web/templates/.*(eex)$",
+      ~r"priv/catalogue/.*(ex)$"
     ]
   ]
 
